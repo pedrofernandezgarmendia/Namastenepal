@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Namasté Nepal · Restaurante Nepalí e Hindú · Majadahonda</title>
+<meta name="description" content="El restaurante #1 de Majadahonda. Cocina nepalí e hindú auténtica. Chicken tikka, butter chicken, naans caseros, helado de pistacho. Terraza disponible. Reservas: 918 05 75 30.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🙏</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:      #0e0a06;
+  --bg2:     #160f08;
+  --bg3:     #1e1410;
+  --card:    #231810;
+  --spice:   #c85a1a;
+  --spice-lt:#e07030;
+  --gold:    #d4a840;
+  --gold-lt: #e8c060;
+  --cream:   #f5edd8;
+  --warm:    #e8d8b8;
+  --muted:   #8a7a60;
+  --border:  rgba(212,168,64,.12);
+  --serif:   'Cormorant Garamond', Georgia, serif;
+  --sans:    'Jost', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--cream);overflow-x:hidden;font-weight:300}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:24px 64px;transition:all .4s}
+nav.s{background:rgba(14,10,6,.97);backdrop-filter:blur(16px);padding:14px 64px;border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:22px;letter-spacing:.06em;color:var(--cream);text-decoration:none;display:flex;flex-direction:column;line-height:1.1}
+.logo-sub{font-size:9px;font-family:var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:12px;font-weight:400;letter-spacing:.1em;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:12px 28px;text-decoration:none;border-radius:1px;transition:background .2s}
+.nav-cta:hover{background:var(--gold-lt)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+.ham span{display:block;width:22px;height:1px;background:var(--cream)}
+.mob{display:none;position:fixed;inset:0;background:var(--bg);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mob.open{display:flex}
+.mob a{font-family:var(--serif);font-size:44px;color:var(--cream);text-decoration:none;transition:color .2s}
+.mob a:hover{color:var(--gold)}
+.mob-x{position:absolute;top:24px;right:28px;font-size:22px;color:var(--muted);background:none;border:none;cursor:pointer}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(200,90,26,.12) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(212,168,64,.06) 0%,transparent 50%),linear-gradient(to bottom,var(--bg) 0%,rgba(14,10,6,.85) 100%)}
+.hero-pattern{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(212,168,64,.04) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(212,168,64,.04) 60px);pointer-events:none}
+.hero-ornament{position:absolute;top:50%;right:10%;transform:translateY(-50%);font-size:320px;opacity:.025;line-height:1;pointer-events:none;user-select:none}
+.hero-tag{display:inline-flex;align-items:center;gap:12px;font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0;animation:up .8s .2s forwards;position:relative;z-index:2}
+.hero-tag::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+.hero-h1{font-family:var(--serif);font-size:clamp(64px,11vw,148px);font-weight:300;line-height:.9;letter-spacing:-.01em;color:var(--cream);margin-bottom:8px;opacity:0;animation:up .9s .35s forwards;position:relative;z-index:2}
+.hero-h1 span{display:block;font-style:italic;color:var(--spice-lt)}
+.hero-sub{font-family:var(--serif);font-size:clamp(18px,2.5vw,28px);font-weight:300;font-style:italic;color:var(--muted);letter-spacing:.04em;margin-bottom:44px;opacity:0;animation:up .8s .5s forwards;position:relative;z-index:2}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;opacity:0;animation:up .8s .65s forwards;position:relative;z-index:2;flex-wrap:wrap}
+.hero-desc{font-size:15px;color:var(--muted);line-height:1.8;max-width:420px}
+.hero-actions{display:flex;flex-direction:column;align-items:flex-end;gap:16px}
+.btn-gold{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);padding:17px 44px;text-decoration:none;border-radius:1px;transition:all .25s;display:inline-block;white-space:nowrap}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px)}
+.btn-outline{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);background:transparent;padding:16px 44px;text-decoration:none;border-radius:1px;border:1px solid rgba(212,168,64,.4);transition:all .25s;display:inline-block;white-space:nowrap}
+.btn-outline:hover{border-color:var(--gold);background:rgba(212,168,64,.06)}
+.hero-rating{display:flex;align-items:center;gap:8px}
+.hero-stars{display:flex;gap:3px}
+.star{color:var(--gold);font-size:14px}
+.hero-rating-txt{font-size:12px;color:var(--muted)}
+.hero-rating-txt strong{color:var(--cream)}
+.hero-scroll{position:absolute;right:64px;bottom:0;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2}
+.scroll-line{width:1px;height:80px;background:linear-gradient(to bottom,transparent,var(--gold));animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* MARQUEE */
+.mq{background:var(--spice);padding:13px 0;overflow:hidden}
+.mq-track{display:flex;white-space:nowrap;animation:scroll 20s linear infinite}
+.mq-item{font-family:var(--sans);font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,237,216,.8);padding:0 28px;display:flex;align-items:center;gap:20px}
+.mq-dot{width:3px;height:3px;border-radius:50%;background:rgba(245,237,216,.4)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}.rv.d5{transition-delay:.5s}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* LAYOUT */
+section{padding:110px 0}
+.c{max-width:1160px;margin:0 auto;padding:0 64px}
+.tag{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+.h2{font-family:var(--serif);font-size:clamp(40px,5.5vw,68px);font-weight:300;line-height:1;color:var(--cream);margin-bottom:16px;letter-spacing:-.01em}
+.h2 em{font-style:italic;color:var(--spice-lt)}
+.lead{font-size:15px;color:var(--muted);line-height:1.8;max-width:480px}
+
+/* NOSOTROS */
+.about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+.about-visual{position:relative}
+.about-img{width:100%;aspect-ratio:4/5;background:linear-gradient(135deg,var(--bg3) 0%,var(--card) 100%);border-radius:2px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);overflow:hidden}
+.about-img-inner{font-size:100px;opacity:.15}
+.about-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(200,90,26,.1) 0%,transparent 70%)}
+.about-badge{position:absolute;bottom:-20px;right:-20px;background:var(--gold);padding:20px 24px;text-align:center;border-radius:1px}
+.ab-num{font-family:var(--serif);font-size:48px;color:var(--bg);line-height:1;font-weight:300}
+.ab-txt{font-size:9px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:rgba(14,10,6,.7)}
+.about-text{display:flex;flex-direction:column;gap:24px}
+.about-p{font-size:15px;color:var(--muted);line-height:1.9}
+.about-p strong{color:var(--cream);font-weight:400}
+.about-divider{width:48px;height:1px;background:var(--gold);opacity:.4}
+.kris-card{background:var(--card);border:1px solid var(--border);padding:20px 24px;border-radius:2px;display:flex;align-items:center;gap:16px}
+.kris-av{width:48px;height:48px;border-radius:50%;background:rgba(212,168,64,.1);border:1px solid rgba(212,168,64,.3);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px;color:var(--gold);flex-shrink:0}
+.kris-name{font-size:14px;font-weight:400;color:var(--cream)}
+.kris-role{font-size:10px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.kris-quote{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--muted)}
+
+/* CARTA */
+.menu-wrap{background:var(--bg3)}
+.menu-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:60px}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.mc{background:var(--bg2);padding:36px 32px;position:relative;overflow:hidden;transition:background .3s;cursor:default}
+.mc:hover{background:var(--card)}
+.mc::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(ellipse at top right,rgba(212,168,64,.04) 0%,transparent 70%)}
+.mc::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--spice);transition:width .4s ease}
+.mc:hover::after{width:100%}
+.mc-cat{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;opacity:.7}
+.mc-name{font-family:var(--serif);font-size:26px;color:var(--cream);margin-bottom:10px;font-weight:300}
+.mc-desc{font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:20px}
+.mc-items{display:flex;flex-wrap:wrap;gap:8px}
+.mc-item{font-size:11px;padding:5px 12px;border:1px solid var(--border);color:var(--muted);border-radius:1px;transition:all .2s}
+.mc:hover .mc-item{border-color:rgba(200,90,26,.3);color:var(--spice-lt)}
+.mc-highlight{background:rgba(200,90,26,.08);border-color:rgba(200,90,26,.2)!important;color:var(--spice-lt)!important}
+
+/* ESPECIALIDADES */
+.spec-wrap{background:var(--bg)}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:56px}
+.sc{background:var(--bg2);padding:32px 28px;text-align:center;transition:background .3s}
+.sc:hover{background:var(--card)}
+.sc-ico{font-size:36px;margin-bottom:16px;display:block}
+.sc-name{font-family:var(--serif);font-size:20px;color:var(--cream);margin-bottom:8px}
+.sc-desc{font-size:12px;color:var(--muted);line-height:1.7}
+
+/* RESEÑAS */
+.rev-wrap{background:var(--bg3)}
+.rev-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:24px}
+.rev-badge{display:flex;align-items:center;gap:16px;padding:20px 24px;border:1px solid var(--border);background:var(--bg2);border-radius:2px}
+.rb-num{font-family:var(--serif);font-size:56px;color:var(--gold);line-height:1;letter-spacing:.02em}
+.rb-r{display:flex;flex-direction:column;gap:5px}
+.rb-stars{display:flex;gap:3px}
+.rb-star{color:var(--gold);font-size:13px}
+.rb-txt{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.rc{background:var(--bg2);padding:30px 26px;transition:background .3s}
+.rc:hover{background:var(--card)}
+.rc-stars{display:flex;gap:3px;margin-bottom:16px}
+.rc-star{color:var(--gold);font-size:12px}
+.rc-txt{font-family:var(--serif);font-size:15px;font-style:italic;color:var(--cream);line-height:1.75;margin-bottom:18px;font-weight:300}
+.rc-author{display:flex;align-items:center;gap:10px}
+.rc-av{width:34px;height:34px;border-radius:50%;background:rgba(212,168,64,.08);border:1px solid rgba(212,168,64,.2);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:13px;color:var(--gold);flex-shrink:0}
+.rc-name{font-size:12px;font-weight:500;color:var(--cream)}
+.rc-meta{font-size:10px;color:var(--muted)}
+
+/* RESERVAR */
+.res-wrap{background:var(--bg2)}
+.res-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start}
+.info-item{padding:22px 0;border-bottom:1px solid var(--border)}
+.info-item:first-child{padding-top:0}
+.il{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.iv{font-size:14px;color:var(--cream);line-height:1.7}
+.iv a{color:var(--gold);text-decoration:none}
+.hor{display:flex;flex-direction:column}
+.hor-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(212,168,64,.08)}
+.hor-row:last-child{border-bottom:none}
+.hor-d{font-size:13px;color:var(--muted)}
+.hor-t{font-size:13px;color:var(--cream);font-weight:400;text-align:right}
+.map{width:100%;height:160px;overflow:hidden;border:1px solid var(--border);margin-top:16px;border-radius:2px}
+.map iframe{width:100%;height:100%;border:none;filter:grayscale(100%) invert(80%) contrast(80%) brightness(.7)}
+.form{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fl{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.fg input,.fg select,.fg textarea{font-family:var(--sans);font-size:13px;color:var(--cream);background:var(--card);border:1px solid var(--border);padding:14px 16px;outline:none;transition:border-color .2s;border-radius:1px;-webkit-appearance:none}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(212,168,64,.5)}
+.fg select option{background:var(--card)}
+.fg select{color:var(--cream)}
+.fg textarea{height:88px;resize:vertical}
+.form-sub{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--bg);background:var(--gold);border:none;padding:17px;cursor:pointer;transition:background .25s;width:100%;border-radius:1px}
+.form-sub:hover{background:var(--gold-lt)}
+.form-note{font-size:11px;color:var(--muted);text-align:center}
+
+/* CTA */
+.cta-wrap{background:var(--spice);padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-wrap::before{content:'🙏';position:absolute;font-size:300px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.04;pointer-events:none}
+.cta-tag{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,237,216,.6);margin-bottom:16px;justify-content:center}
+.cta-tag::before{content:'';display:block;width:24px;height:1px;background:rgba(245,237,216,.4)}
+.cta-h2{font-family:var(--serif);font-size:clamp(36px,6vw,72px);font-weight:300;color:var(--cream);margin-bottom:16px;letter-spacing:-.01em;line-height:1}
+.cta-sub{font-size:15px;color:rgba(245,237,216,.7);margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.7}
+.btn-cream{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--spice);background:var(--cream);padding:18px 48px;text-decoration:none;border-radius:1px;transition:all .25s;display:inline-block}
+.btn-cream:hover{background:white;transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:60px 0 28px}
+.ft-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:56px;margin-bottom:48px}
+.ft-logo{font-family:var(--serif);font-size:24px;color:var(--cream);margin-bottom:6px;font-weight:300}
+.ft-logo span{color:var(--gold)}
+.ft-desc{font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:18px}
+.ft-soc{display:flex;gap:7px}
+.ft-soc a{width:32px;height:32px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);text-decoration:none;font-size:10px;font-weight:500;transition:all .2s;border-radius:1px}
+.ft-soc a:hover{border-color:var(--gold);color:var(--gold)}
+.ft-h{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-links a{font-size:13px;color:rgba(245,237,216,.35);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--gold)}
+.ft-ct p{font-size:12px;color:rgba(245,237,216,.35);line-height:1.9}
+.ft-ct a{color:var(--gold);text-decoration:none}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--border);flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:10px;color:rgba(245,237,216,.18)}
+
+/* WA */
+.wa{position:fixed;bottom:30px;right:30px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.wa-tip{background:var(--card);border:1px solid var(--border);color:var(--cream);font-size:11px;padding:8px 13px;opacity:0;transform:translateX(8px);transition:all .2s;pointer-events:none;white-space:nowrap;border-radius:1px}
+.wa:hover .wa-tip{opacity:1;transform:translateX(0)}
+.wa-btn{width:48px;height:48px;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s;border-radius:50%}
+.wa-btn:hover{transform:scale(1.1)}
+.wa-btn svg{width:24px;height:24px;fill:#fff}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:16px 20px}nav.s{padding:12px 20px}
+  .nav-links,.nav-cta{display:none}.ham{display:flex}
+  .c{padding:0 20px}section{padding:72px 0}
+  .hero{padding:0 20px 48px;padding-top:100px}
+  .hero-ornament{display:none}
+  .hero-scroll{display:none}
+  .about-grid,.menu-intro,.res-grid{grid-template-columns:1fr;gap:40px}
+  .about-badge{bottom:20px;right:20px}
+  .menu-grid,.rev-grid{grid-template-columns:1fr}
+  .spec-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr;gap:28px}
+  .ft-bottom{flex-direction:column;text-align:center}
+  .hero-actions{align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">Namasté Nepal<span class="logo-sub">Majadahonda · Desde 2019</span></a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#carta">Carta</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+    <li><a href="#reservar">Reservar</a></li>
+  </ul>
+  <a href="#reservar" class="nav-cta">Reservar mesa</a>
+  <button class="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob" id="mob">
+  <button class="mob-x" onclick="toggleMenu()">✕</button>
+  <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
+  <a href="#carta" onclick="toggleMenu()">Carta</a>
+  <a href="#resenas" onclick="toggleMenu()">Reseñas</a>
+  <a href="#reservar" onclick="toggleMenu()">Reservar</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-ornament">🙏</div>
+
+  <div style="position:relative;z-index:2">
+    <div class="hero-tag">Cocina nepalí e hindú · Majadahonda</div>
+    <h1 class="hero-h1">
+      Namasté
+      <span>Nepal</span>
+    </h1>
+    <p class="hero-sub">El sabor del Himalaya en Madrid</p>
+    <div class="hero-bottom">
+      <p class="hero-desc">El restaurante <strong style="color:var(--cream)">#1 de Majadahonda</strong> en TripAdvisor. Cocina nepalí e hindú auténtica preparada con amor por nuestra familia. Chicken tikka, butter chicken, naans caseros y el mejor helado de pistacho de la zona.</p>
+      <div class="hero-actions">
+        <div class="hero-rating">
+          <div class="hero-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+          <span class="hero-rating-txt"><strong>4.7</strong> · 305 reseñas TripAdvisor · #1 de 208 restaurantes</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="#reservar" class="btn-gold">Reservar mesa</a>
+          <a href="#carta" class="btn-outline">Ver carta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-track">
+    <span class="mq-item">#1 Majadahonda TripAdvisor<span class="mq-dot"></span></span>
+    <span class="mq-item">Chicken Tikka<span class="mq-dot"></span></span>
+    <span class="mq-item">Butter Chicken<span class="mq-dot"></span></span>
+    <span class="mq-item">Naans caseros<span class="mq-dot"></span></span>
+    <span class="mq-item">Mango Lassi<span class="mq-dot"></span></span>
+    <span class="mq-item">Helado de pistacho<span class="mq-dot"></span></span>
+    <span class="mq-item">Terraza disponible<span class="mq-dot"></span></span>
+    <span class="mq-item">Opciones veganas<span class="mq-dot"></span></span>
+    <span class="mq-item">Eventos y celebraciones<span class="mq-dot"></span></span>
+    <span class="mq-item">#1 Majadahonda TripAdvisor<span class="mq-dot"></span></span>
+    <span class="mq-item">Chicken Tikka<span class="mq-dot"></span></span>
+    <span class="mq-item">Butter Chicken<span class="mq-dot"></span></span>
+    <span class="mq-item">Naans caseros<span class="mq-dot"></span></span>
+    <span class="mq-item">Mango Lassi<span class="mq-dot"></span></span>
+    <span class="mq-item">Helado de pistacho<span class="mq-dot"></span></span>
+    <span class="mq-item">Terraza disponible<span class="mq-dot"></span></span>
+    <span class="mq-item">Opciones veganas<span class="mq-dot"></span></span>
+    <span class="mq-item">Eventos y celebraciones<span class="mq-dot"></span></span>
+  </div>
+</div>
+
+<!-- NOSOTROS -->
+<section class="about" id="nosotros">
+  <div class="c">
+    <div class="about-grid">
+      <div class="about-visual rv">
+        <div class="about-img"><div class="about-img-inner">🏔️</div></div>
+        <div class="about-badge"><div class="ab-num">4.7</div><div class="ab-txt">Google · 1675 reseñas</div></div>
+      </div>
+      <div class="about-text rv d2">
+        <span class="tag">Nuestra historia</span>
+        <h2 class="h2">Una familia,<br><em>una pasión</em></h2>
+        <div class="about-p">Namasté Nepal nació de un sueño: traer los sabores auténticos del Himalaya al corazón de Majadahonda. <strong>Kris</strong>, nuestro fundador, te recibe personalmente cada día con la misma sonrisa de siempre.</div>
+        <div class="about-p">Desde las especias seleccionadas a mano hasta el helado de pistacho que hacemos cada mañana — todo en Namasté Nepal está hecho con la dedicación y el cariño de quien cocina para su propia familia.</div>
+        <div class="about-divider"></div>
+        <div class="kris-card">
+          <div class="kris-av">K</div>
+          <div>
+            <div class="kris-role">Fundador & Anfitrión</div>
+            <div class="kris-name">Kris</div>
+            <div class="kris-quote">"Desde que entras, quiero que te sientas como en casa."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section class="menu-wrap" id="carta">
+  <div class="c">
+    <div class="menu-intro">
+      <div class="rv">
+        <span class="tag">La carta</span>
+        <h2 class="h2">Sabores del<br><em>Himalaya</em></h2>
+      </div>
+      <p class="lead rv d2">Cocina nepalí e hindú auténtica. Opciones para todos — carnívoros, vegetarianos y veganos. Todos los platos se preparan con especias seleccionadas y productos frescos.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="mc rv d1">
+        <div class="mc-cat">Entrantes</div>
+        <div class="mc-name">Para empezar</div>
+        <div class="mc-desc">Los imprescindibles antes del plato principal. Perfectos para compartir y descubrir los sabores de Nepal.</div>
+        <div class="mc-items">
+          <span class="mc-item mc-highlight">Samosas</span>
+          <span class="mc-item">Pakoras</span>
+          <span class="mc-item">Papadum</span>
+          <span class="mc-item">Sopa de lenteja</span>
+          <span class="mc-item">Momo (gyoza nepalí)</span>
+        </div>
+      </div>
+      <div class="mc rv d2">
+        <div class="mc-cat">Platos principales</div>
+        <div class="mc-name">Especialidades</div>
+        <div class="mc-desc">Los platos que hacen que nuestros clientes vuelvan una y otra vez. Cocinados al momento con especias frescas.</div>
+        <div class="mc-items">
+          <span class="mc-item mc-highlight">Chicken Tikka</span>
+          <span class="mc-item mc-highlight">Butter Chicken</span>
+          <span class="mc-item">Kashmiri Chicken</span>
+          <span class="mc-item">Chicken Tikka Dhaulagiri</span>
+          <span class="mc-item">Cordero al curry</span>
+          <span class="mc-item">Monkfish masala</span>
+        </div>
+      </div>
+      <div class="mc rv d3">
+        <div class="mc-cat">Para veganos y vegetarianos</div>
+        <div class="mc-name">Sin carne</div>
+        <div class="mc-desc">Una de las cartas vegetarianas más completas de la zona noroeste de Madrid. Auténtico y delicioso.</div>
+        <div class="mc-items">
+          <span class="mc-item">Mixed veg curry</span>
+          <span class="mc-item">Saag aloo</span>
+          <span class="mc-item mc-highlight">Chana masala</span>
+          <span class="mc-item">Korma vegetal</span>
+          <span class="mc-item">Dal baht</span>
+        </div>
+      </div>
+      <div class="mc rv d4">
+        <div class="mc-cat">Panes y arroces</div>
+        <div class="mc-name">Acompañamientos</div>
+        <div class="mc-desc">Los naans los hacemos en nuestro horno tandoor de piedra cada día. El arroz basmati cocinado al vapor tradicional.</div>
+        <div class="mc-items">
+          <span class="mc-item mc-highlight">Cheese Naan</span>
+          <span class="mc-item">Naan de ajo</span>
+          <span class="mc-item">Naan classic</span>
+          <span class="mc-item">Arroz basmati</span>
+          <span class="mc-item">Arroz frito</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="spec-wrap">
+  <div class="c">
+    <div class="rv" style="text-align:center;max-width:500px;margin:0 auto 0">
+      <span class="tag">No te puedes ir sin probar</span>
+      <h2 class="h2">Las <em>joyas</em><br>de la casa</h2>
+    </div>
+    <div class="spec-grid">
+      <div class="sc rv d1">
+        <span class="sc-ico">🍦</span>
+        <div class="sc-name">Helado de pistacho casero</div>
+        <div class="sc-desc">Lo hacemos nosotros cada mañana. Mencionado en cientos de reseñas como "lo mejor del restaurante". También disponible de mango y coco.</div>
+      </div>
+      <div class="sc rv d2">
+        <span class="sc-ico">🥭</span>
+        <div class="sc-name">Mango Lassi</div>
+        <div class="sc-desc">El batido de mango y yogur más cremoso de Madrid. Refrescante, natural y perfecto para acompañar cualquier plato especiado.</div>
+      </div>
+      <div class="sc rv d3">
+        <span class="sc-ico">🔥</span>
+        <div class="sc-name">Chicken Tikka Dhaulagiri</div>
+        <div class="sc-desc">Nuestra receta estrella. Pollo marinado en yogur y especias del Himalaya, cocinado en horno tandoor a 480°C. Mencionado en cientos de reseñas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEÑAS -->
+<section class="rev-wrap" id="resenas">
+  <div class="c">
+    <div class="rev-head">
+      <div class="rv">
+        <span class="tag">Lo que dicen</span>
+        <h2 class="h2">#1 de <em>Majadahonda</em></h2>
+      </div>
+      <div class="rev-badge rv d2">
+        <span class="rb-num">4.7</span>
+        <div class="rb-r">
+          <div class="rb-stars"><span class="rb-star">★</span><span class="rb-star">★</span><span class="rb-star">★</span><span class="rb-star">★</span><span class="rb-star">★</span></div>
+          <span class="rb-txt">#1 de 208 restaurantes · TripAdvisor</span>
+        </div>
+      </div>
+    </div>
+    <div class="rev-grid">
+      <div class="rc rv d1">
+        <div class="rc-stars"><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span></div>
+        <p class="rc-txt">"Namasté Nepal es un sitio que recomiendo sin dudar. Desde que entras, Kris te recibe siempre con una sonrisa y hace que te sientas como en casa."</p>
+        <div class="rc-author"><div class="rc-av">FM</div><div><div class="rc-name">Francisco M.</div><div class="rc-meta">TripAdvisor ✓</div></div></div>
+      </div>
+      <div class="rc rv d2">
+        <div class="rc-stars"><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span></div>
+        <p class="rc-txt">"Comida picante, abundante y muy buena. El servicio fue excelente y la localización muy agradable. Tuvimos cheese naans, chicken tikka y butter chicken. Simplemente espectacular."</p>
+        <div class="rc-author"><div class="rc-av">AC</div><div><div class="rc-name">Alberto C.</div><div class="rc-meta">TripAdvisor ✓</div></div></div>
+      </div>
+      <div class="rc rv d3">
+        <div class="rc-stars"><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span></div>
+        <p class="rc-txt">"Maravilloso sitio para ir en pareja, familia o con amigos. Lo mejor que puedes hacer es que os recomienden ellos porque lo hacen genial. Un descubrimiento maravilloso."</p>
+        <div class="rc-author"><div class="rc-av">PR</div><div><div class="rc-name">Pilar R.</div><div class="rc-meta">TripAdvisor ✓</div></div></div>
+      </div>
+      <div class="rc rv d1">
+        <div class="rc-stars"><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span></div>
+        <p class="rc-txt">"Coming from an Indian, this is one of the best Indian foods that I have had in Spain. Service is fast and the restaurant is spacious. Will definitely go again."</p>
+        <div class="rc-author"><div class="rc-av">OV</div><div><div class="rc-name">Olga V.</div><div class="rc-meta">Google ✓</div></div></div>
+      </div>
+      <div class="rc rv d2">
+        <div class="rc-stars"><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span></div>
+        <p class="rc-txt">"Muy buena comida, muy buen ambiente y muy buen sitio para celebrar tu cumpleaños!! El helado de pistacho casero… ¡simplemente increíble!"</p>
+        <div class="rc-author"><div class="rc-av">DP</div><div><div class="rc-name">David P.</div><div class="rc-meta">TripAdvisor ✓</div></div></div>
+      </div>
+      <div class="rc rv d3">
+        <div class="rc-stars"><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span><span class="rc-star">★</span></div>
+        <p class="rc-txt">"Un sitio precioso con una decoración muy cuidada. El servicio fue rápido y los camareros muy amables, y la comida… espectacular. Todo lo que pedimos estaba delicioso."</p>
+        <div class="rc-author"><div class="rc-av">RM</div><div><div class="rc-name">Raquel M.</div><div class="rc-meta">Google ✓</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVAR -->
+<section class="res-wrap" id="reservar">
+  <div class="c">
+    <div class="rv" style="margin-bottom:56px">
+      <span class="tag">Reservar</span>
+      <h2 class="h2">Reserva tu<br><em>mesa</em></h2>
+    </div>
+    <div class="res-grid">
+      <div>
+        <div class="info-item rv">
+          <div class="il">Dirección</div>
+          <div class="iv">Calle Doctor Calero 54<br>28220 Majadahonda, Madrid</div>
+        </div>
+        <div class="info-item rv d1">
+          <div class="il">Teléfono</div>
+          <div class="iv"><a href="tel:+34918057530">918 05 75 30</a></div>
+        </div>
+        <div class="info-item rv d2">
+          <div class="il">Horario</div>
+          <div class="hor">
+            <div class="hor-row"><span class="hor-d">Lunes – Domingo</span><span class="hor-t">13:00–16:30 · 19:30–00:00</span></div>
+          </div>
+        </div>
+        <div class="info-item rv d3">
+          <div class="il">Eventos y celebraciones</div>
+          <div class="iv">Cumpleaños, eventos de empresa y celebraciones especiales. Llámanos para consultar disponibilidad y menús especiales.</div>
+        </div>
+        <div class="map rv d4">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3034!2d-3.8734!3d40.4701!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDI4JzEyLjQiTiAzwrA1MicyNC4yIlc!5e0!3m2!1ses!2ses!4v1234" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="rv d2">
+        <form class="form" action="https://formspree.io/f/xreyyqgv" method="POST">
+          <div class="form-row">
+            <div class="fg"><label class="fl">Nombre</label><input type="text" name="nombre" placeholder="Tu nombre" required></div>
+            <div class="fg"><label class="fl">Teléfono</label><input type="tel" name="telefono" placeholder="610 000 000" required></div>
+          </div>
+          <div class="form-row">
+            <div class="fg"><label class="fl">Fecha</label><input type="date" name="fecha" required></div>
+            <div class="fg"><label class="fl">Hora</label>
+              <select name="hora" required>
+                <option value="" disabled selected>Elige hora</option>
+                <optgroup label="Comida">
+                  <option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option><option>16:00</option>
+                </optgroup>
+                <optgroup label="Cena">
+                  <option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option><option>22:30</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label class="fl">Número de personas</label>
+            <select name="personas" required>
+              <option value="" disabled selected>¿Cuántos sois?</option>
+              <option>1 persona</option><option>2 personas</option><option>3 personas</option><option>4 personas</option><option>5-6 personas</option><option>7-10 personas</option><option>Más de 10 personas</option>
+            </select>
+          </div>
+          <div class="fg"><label class="fl">Ocasión especial (opcional)</label>
+            <select name="ocasion">
+              <option value="" selected>Sin ocasión especial</option>
+              <option>Cumpleaños</option><option>Aniversario</option><option>Comida de empresa</option><option>Cena romántica</option><option>Comida familiar</option>
+            </select>
+          </div>
+          <div class="fg"><label class="fl">Mensaje (opcional)</label><textarea name="mensaje" placeholder="Alergias, preferencias o cualquier cosa que debamos saber..."></textarea></div>
+          <button type="submit" class="form-sub">Confirmar reserva</button>
+          <p class="form-note">Confirmamos en menos de 2h · También por teléfono: 918 05 75 30</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-wrap">
+  <div class="c">
+    <span class="cta-tag">Te esperamos</span>
+    <h2 class="cta-h2">Namasté significa<br>"te saludo"</h2>
+    <p class="cta-sub">Ven a descubrir por qué somos el restaurante #1 de Majadahonda. Kris y su equipo te esperan con los brazos abiertos.</p>
+    <a href="#reservar" class="btn-cream">Reservar ahora</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="c">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-logo">Namasté <span>Nepal</span></div>
+        <p class="ft-desc">Restaurante de cocina nepalí e hindú en Majadahonda. #1 TripAdvisor · 4.7 Google · 1.675 reseñas verificadas.</p>
+        <div class="ft-soc">
+          <a href="https://www.facebook.com/restaurantenamastenepal/" target="_blank">fb</a>
+          <a href="https://wa.me/34918057530" target="_blank">wa</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-h">El restaurante</div>
+        <ul class="ft-links">
+          <li><a href="#nosotros">Nuestra historia</a></li>
+          <li><a href="#carta">La carta</a></li>
+          <li><a href="#resenas">Reseñas</a></li>
+          <li><a href="#reservar">Reservar mesa</a></li>
+        </ul>
+      </div>
+      <div class="ft-ct">
+        <div class="ft-h">Contacto</div>
+        <p>Calle Doctor Calero 54<br>28220 Majadahonda, Madrid<br><br>
+        <a href="tel:+34918057530">918 05 75 30</a><br><br>
+        Lun–Dom: 13:00–16:30<br>
+        Lun–Dom: 19:30–00:00</p>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p class="ft-copy">© 2025 Namasté Nepal · Majadahonda · Calle Doctor Calero 54</p>
+      <p class="ft-copy">#1 TripAdvisor · 4.7 ★ · 1.675 reseñas</p>
+    </div>
+  </div>
+</footer>
+
+<div class="wa">
+  <div class="wa-tip">Reservar por WhatsApp</div>
+  <a href="https://wa.me/34918057530?text=Hola%2C%20quiero%20hacer%20una%20reserva%20en%20Namasté%20Nepal" class="wa-btn" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>50));
+function toggleMenu(){document.getElementById('mob').classList.toggle('open')}
+const obs=new IntersectionObserver(e=>e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('in')}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
